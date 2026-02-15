@@ -1,0 +1,25 @@
+import type { Credit } from "../types/portfolio";
+
+export const CREDITS: Credit[] = [
+    { year: "2025", type: "Award", title: "Best Cinematography Award", festival: "Eshragh International Film Festival", country: "Iran", film: "Fasle Vasl (Documentary)" },
+    { year: "2025", type: "Jury Prize", title: "Special Jury Prize", festival: "Slemani International Film Festival", country: "Iraq", film: "Rah" },
+    { year: "2025", type: "Nomination", title: "Nominee for Best Sound", festival: "Sahand Regional Film Festival", country: "Iran", film: "Darvag" },
+    { year: "2025", type: "Official Selection", title: "Official Selection (Narrative Competition)", festival: "Tehran International Short Film Festival", country: "Iran", film: "Darvag" },
+    { year: "2025", type: "Official Selection", title: "Official Selection (Narrative & Adaptation Competition)", festival: "Tehran International Short Film Festival", country: "Iran", film: "Ziarat" },
+    { year: "2025", type: "Official Selection", title: "Official Selection", festival: "Bogotá International Film Festival", country: "Colombia", film: "Darvag" },
+    { year: "2025", type: "Official Selection", title: "Official Selection", festival: "Capri International Film Festival", country: "Italy", film: "Darvag" },
+    { year: "2022", type: "Award", title: "Best Cinematography Award", festival: "Clapperboard Golden International Film Festival", country: "Brazil", film: "The Last Tea" },
+    { year: "2021", type: "Official Selection", title: "Official Selection", festival: "Berlin International Short Film Festival", country: "Germany", film: "Ballein" },
+    { year: "2021", type: "Official Selection", title: "Official Selection", festival: "Duhok International Film Festival", country: "Iraq", film: "Ballein" },
+    { year: "2021", type: "Official Selection", title: "Official Selection", festival: "Fajr International Film Festival", country: "Iran", film: "Ballein" },
+    { year: "2021", type: "Official Selection", title: "Official Selection", festival: "Iranian Short Film Academy", country: "Iran", film: "Ballein" },
+    { year: "2020", type: "Nomination", title: "Nominee for Best Cinematography", festival: "Tehran International Short Film Festival", country: "Iran", film: "Ballein" },
+    { year: "2020", type: "Nomination", title: "Nominee for Best Cinematography", festival: "Asurik Regional Film Festival", country: "Iran", film: "Younes" },
+    { year: "2019", type: "Award", title: "Honorary Diploma for Best Director", festival: "Shabdiz Regional Film Festival", country: "Iran", film: "Varam" },
+    { year: "2019", type: "Award", title: "Best Cinematographer Award", festival: "Tadbir National Film Festival", country: "Iran", film: "Varam" },
+    { year: "2018", type: "Official Selection", title: "Official Selection", festival: "Zhyar Regional Film Festival", country: "Iran", film: "Troofe" },
+    { year: "2018", type: "Official Selection", title: "Official Selection", festival: "Tehran International Short Film Festival", country: "Iran", film: "Varam" },
+    { year: "2017", type: "Award", title: "Honorary Diploma for Best Cinematography", festival: "Shabdiz Regional Film Festival", country: "Iran", film: "Troofe" },
+    { year: "2017", type: "Nomination", title: "Nominee for Best Sound", festival: "Shabdiz Regional Film Festival", country: "Iran", film: "Troofe" },
+    { year: "2017", type: "Official Selection", title: "Official Selection", festival: "Tehran International Short Film Festival", country: "Iran", film: "Troofe" },
+];

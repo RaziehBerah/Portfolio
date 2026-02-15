@@ -1,0 +1,11 @@
+# ---- Videos (prevent large files in repo) ----
+*.mp4
+*.mov
+*.m4v
+*.webm
+*.avi
+*.mkv
+
+# اگر ویدیوها توی پوشه خاصی بودن (اختیاری)
+media/videos/
+public/media/videos/

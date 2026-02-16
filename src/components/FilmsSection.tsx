@@ -29,13 +29,14 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                 </Heading>
 
                 <Box position="relative">
+                    {/* ✅ FIX: روی موبایل دکمه‌ها روی پوستر باشند نه روی متن */}
                     <IconButton
                         aria-label="Previous film"
                         icon={<FiChevronLeft />}
                         onClick={prev}
                         position="absolute"
                         left={{ base: 2, md: 3 }}
-                        top="50%"
+                        top={{ base: "230px", md: "50%" }} // ✅ موبایل: وسط پوستر (نه وسط کل کارت)
                         transform="translateY(-50%)"
                         zIndex={10}
                         borderRadius="999px"
@@ -45,13 +46,14 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                         backdropFilter="blur(10px)"
                         _hover={{ bg: accent, color: "black", borderColor: accent }}
                     />
+
                     <IconButton
                         aria-label="Next film"
                         icon={<FiChevronRight />}
                         onClick={next}
                         position="absolute"
                         right={{ base: 2, md: 3 }}
-                        top="50%"
+                        top={{ base: "230px", md: "50%" }} // ✅ موبایل: وسط پوستر
                         transform="translateY(-50%)"
                         zIndex={10}
                         borderRadius="999px"
@@ -76,7 +78,13 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                     >
                         <Flex w="100%" gap={0} align="stretch">
                             {films.map((f) => (
-                                <Box key={f.id} flex="0 0 100%" minW="100%" flexShrink={0} sx={{ scrollSnapAlign: "start" }}>
+                                <Box
+                                    key={f.id}
+                                    flex="0 0 100%"
+                                    minW="100%"
+                                    flexShrink={0}
+                                    sx={{ scrollSnapAlign: "start" }}
+                                >
                                     <Box px={{ base: 2, md: 6 }} py={{ base: 2, md: 3 }}>
                                         <Box
                                             borderRadius="16px"
@@ -86,13 +94,37 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                                             boxShadow="0 14px 55px rgba(0,0,0,0.55)"
                                         >
                                             <Flex direction={{ base: "column", md: "row" }} align="stretch">
-                                                <Box w={{ base: "100%", md: "38%" }} bg="black" borderRight={{ base: "none", md: "1px solid rgba(255,255,255,0.08)" }}>
-                                                    <Box w="100%" h={{ base: "420px", md: "520px" }} display="flex" alignItems="center" justifyContent="center" bg="black">
-                                                        <Image src={f.poster} alt={`${f.title} Poster`} w="100%" h="100%" objectFit="contain" objectPosition="center" />
+                                                <Box
+                                                    w={{ base: "100%", md: "38%" }}
+                                                    bg="black"
+                                                    borderRight={{ base: "none", md: "1px solid rgba(255,255,255,0.08)" }}
+                                                >
+                                                    <Box
+                                                        w="100%"
+                                                        h={{ base: "420px", md: "520px" }}
+                                                        display="flex"
+                                                        alignItems="center"
+                                                        justifyContent="center"
+                                                        bg="black"
+                                                    >
+                                                        <Image
+                                                            src={f.poster}
+                                                            alt={`${f.title} Poster`}
+                                                            w="100%"
+                                                            h="100%"
+                                                            objectFit="contain"
+                                                            objectPosition="center"
+                                                        />
                                                     </Box>
                                                 </Box>
 
-                                                <Box w={{ base: "100%", md: "62%" }} p={{ base: 5, md: 7 }} minH={{ base: "auto", md: "520px" }} display="flex" flexDir="column">
+                                                <Box
+                                                    w={{ base: "100%", md: "62%" }}
+                                                    p={{ base: 5, md: 7 }}
+                                                    minH={{ base: "auto", md: "520px" }}
+                                                    display="flex"
+                                                    flexDir="column"
+                                                >
                                                     <Flex justify="space-between" align="flex-start" gap={4}>
                                                         <Heading
                                                             fontFamily="heading"
@@ -161,7 +193,12 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                                                             color="white"
                                                             border="1px solid rgba(255,255,255,0.18)"
                                                             backdropFilter="blur(10px)"
-                                                            _hover={{ bg: accent, color: "black", borderColor: accent, transform: "translateY(-1px)" }}
+                                                            _hover={{
+                                                                bg: accent,
+                                                                color: "black",
+                                                                borderColor: accent,
+                                                                transform: "translateY(-1px)",
+                                                            }}
                                                             transition="all .18s ease"
                                                         />
                                                         <Text ml={3} fontSize="sm" opacity={0.7}>

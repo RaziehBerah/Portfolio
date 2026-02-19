@@ -1,5 +1,5 @@
 import { Box, Button, Container } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FiPlay } from "react-icons/fi";
 
 type Props = { accent: string; sectionRef?: React.RefObject<HTMLDivElement | null> };
@@ -7,8 +7,14 @@ type Props = { accent: string; sectionRef?: React.RefObject<HTMLDivElement | nul
 export function ShowreelSection({ accent, sectionRef }: Props) {
     const [started, setStarted] = useState(false);
 
-    // لینک Drive رو به preview تبدیل کن
-    const showreelSrc = "https://drive.google.com/file/d/1iTZjeoXxp2yaoTNikKqoAwO7pc03ungD/preview";
+    // ✅ Vimeo "player" URL (نه لینک صفحه vimeo.com)
+    // ✅ autoplay + muted برای اینکه با همون کلیک روی کاور، خودکار پخش بشه (قانون مرورگرها)
+    // ✅ title/byline/portrait خاموش برای UI تمیزتر
+    const showreelSrc = useMemo(
+        () =>
+            "https://player.vimeo.com/video/1019009079?autoplay=1&muted=1&title=0&byline=0&portrait=0",
+        []
+    );
 
     return (
         <Box as="section" id="showreel" py={{ base: 16, md: 24 }} ref={sectionRef as any}>
@@ -26,14 +32,18 @@ export function ShowreelSection({ accent, sectionRef }: Props) {
                         {started ? (
                             <Box
                                 as="iframe"
+                                title="Showreel"
                                 src={showreelSrc}
                                 position="absolute"
                                 inset={0}
                                 w="100%"
                                 h="100%"
                                 border="0"
-                                allow="autoplay; encrypted-media"
+                                // ✅ اجازه‌های لازم برای Vimeo
+                                allow="autoplay; fullscreen; picture-in-picture"
                                 allowFullScreen
+                                // ✅ رندر تنبل برای عملکرد بهتر
+                                loading="lazy"
                             />
                         ) : (
                             <Box
@@ -42,9 +52,6 @@ export function ShowreelSection({ accent, sectionRef }: Props) {
                                 bgImage="url('media/images/Showrell.cover.jpg')"
                                 bgSize="cover"
                                 bgPosition="center"
-                                display="flex"
-                                alignItems="center"
-                                justifyContent="center"
                             />
                         )}
                     </Box>
@@ -58,11 +65,10 @@ export function ShowreelSection({ accent, sectionRef }: Props) {
                             justifyContent="center"
                             bg="rgba(0,0,0,0.25)"
                             backdropFilter="blur(1px)"
-                            cursor="pointer"
-                            onClick={() => setStarted(true)}
                         >
                             <Button
                                 leftIcon={<FiPlay />}
+                                onClick={() => setStarted(true)}
                                 bg="rgba(0,0,0,0.55)"
                                 color="white"
                                 border="1px solid rgba(255,255,255,0.18)"

@@ -41,12 +41,14 @@ export function TeaserModal({ isOpen, onClose, title, src }: Props) {
                         {src ? (
                             <Box
                                 as="iframe"
+                                title={title}
                                 src={src}
                                 w="100%"
                                 h="70vh"
                                 border="0"
-                                allow="autoplay; encrypted-media"
+                                allow="autoplay; fullscreen; picture-in-picture"
                                 allowFullScreen
+                                loading="lazy"
                             />
                         ) : null}
                     </Box>

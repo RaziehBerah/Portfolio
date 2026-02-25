@@ -173,7 +173,7 @@ export function FilmsSection({ films, accent, onPlayTeaser }: Props) {
                                                     <Text
                                                         mt={5}
                                                         color="rgba(255,255,255,0.88)"
-                                                        fontSize={{ base: "sm", md: "md" }}
+                                                        fontSize={{ base: "sm", md: "lg" }}
                                                         lineHeight={{ base: "1.95", md: "1.85" }}
                                                         whiteSpace="pre-line"
                                                         textAlign={{ base: "left", md: "justify" }}

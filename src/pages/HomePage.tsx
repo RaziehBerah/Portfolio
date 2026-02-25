@@ -16,7 +16,7 @@ import { AwardsSection } from "../components/AwardsSection";
 import { TeaserModal } from "../components/TeaserModal";
 import { ContactFooter } from "../components/ContactFooter";
 
-export default function App() {
+export default function HomePage() {
     const accent = "#cfb53b";
 
     const navSolid = useNavSolid(40);

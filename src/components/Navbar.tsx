@@ -18,6 +18,8 @@ import {
 import { FiMenu } from "react-icons/fi";
 import type { NavItem } from "../types/portfolio";
 
+import { Link as RouterLink, useNavigate } from "react-router-dom";
+
 type Props = {
   items: NavItem[];
   navSolid: boolean;
@@ -26,22 +28,21 @@ type Props = {
 
 export function Navbar({ items, navSolid, accent }: Props) {
   const mobileNav = useDisclosure();
+  const navigate = useNavigate();
 
   const onNavClick = () => {
     if (mobileNav.isOpen) mobileNav.onClose();
   };
 
-  // ✅ حتماً در تب/پنجره جدید باز شود
-  const openPhotography = () => {
-    window.open("/photography", "_blank", "noopener,noreferrer");
+  // Photography (به جای window.open)
+  const goPhotography = () => {
+    navigate("/photography");
     onNavClick();
   };
 
-  // ✅ Contact رو آخر نگه می‌داریم، Photography رو قبلش میاریم
+  // Contact جدا
   const contactItem = items.find((it) => it.label.toLowerCase() === "contact");
-  const nonContactItems = items.filter(
-    (it) => it.label.toLowerCase() !== "contact"
-  );
+  const nonContactItems = items.filter((it) => it.label.toLowerCase() !== "contact");
 
   const underlineHover = {
     "&::after": {
@@ -49,7 +50,7 @@ export function Navbar({ items, navSolid, accent }: Props) {
       position: "absolute",
       left: 0,
       bottom: 0,
-      height: "2px", // کمی ضخیم‌تر
+      height: "2px",
       width: "0%",
       background: accent,
       transition: "width .18s ease",
@@ -57,8 +58,11 @@ export function Navbar({ items, navSolid, accent }: Props) {
     "&:hover::after": { width: "100%" },
   };
 
+  const isHashLink = (href: string) => href.startsWith("#");
+
   return (
     <>
+      {/* NAVBAR */}
       <Box
         as="nav"
         position="fixed"
@@ -71,32 +75,32 @@ export function Navbar({ items, navSolid, accent }: Props) {
         borderBottom="1px solid rgba(255,255,255,0.08)"
         transition="background .2s ease"
       >
-        {/* ✅ کمی بزرگ‌تر: py بیشتر + فونت بزرگ‌تر */}
-        <Container maxW="100%" px={{ base: 4, md: 8, lg: 12 }} py={{ base: 5, md: 6 }}>
+        <Container maxW="100%" px={{ base: 4, md: 8, lg: 12 }} py={{ base: 4, md: 6 }}>
           <Flex align="center" justify="space-between" w="100%">
-            {/* Left corner */}
+            {/* LOGO (اگر خواستی clickable بشه، می‌تونی as={RouterLink} to="/" کنی) */}
             <Text
               fontFamily="heading"
               fontWeight="700"
               letterSpacing="0.14em"
-              fontSize={{ base: "xl", md: "2xl" }} // بزرگ‌تر
+              fontSize={{ base: "lg", md: "2xl" }}
               color="white"
               whiteSpace="nowrap"
             >
               ASGHAR LAEI
             </Text>
 
-            {/* Right side (Desktop nav) */}
+            {/* DESKTOP NAV */}
             <HStack spacing={{ md: 7, lg: 8 }} display={{ base: "none", md: "flex" }}>
-              {/* سایر آیتم‌ها (بدون Contact) */}
               {nonContactItems.map((it) => (
                 <Link
                   key={it.href}
-                  href={it.href}
+                  {...(isHashLink(it.href)
+                    ? { href: it.href }
+                    : { as: RouterLink, to: it.href })}
                   onClick={onNavClick}
                   textTransform="uppercase"
                   letterSpacing="0.14em"
-                  fontSize={{ md: "md", lg: "md" }} // بزرگ‌تر از قبل
+                  fontSize="md"
                   color="rgba(255,255,255,0.88)"
                   _hover={{ color: "white" }}
                   position="relative"
@@ -107,13 +111,13 @@ export function Navbar({ items, navSolid, accent }: Props) {
                 </Link>
               ))}
 
-              {/* ✅ Photography قبل Contact */}
+              {/* Photography */}
               <Link
                 as="button"
-                onClick={openPhotography}
+                onClick={goPhotography}
                 textTransform="uppercase"
                 letterSpacing="0.14em"
-                fontSize={{ md: "md", lg: "md" }}
+                fontSize="md"
                 color="rgba(255,255,255,0.88)"
                 position="relative"
                 pb={1}
@@ -123,15 +127,17 @@ export function Navbar({ items, navSolid, accent }: Props) {
                 PHOTOGRAPHY
               </Link>
 
-              {/* Contact آخر */}
+              {/* Contact */}
               {contactItem && (
                 <Link
                   key={contactItem.href}
-                  href={contactItem.href}
+                  {...(isHashLink(contactItem.href)
+                    ? { href: contactItem.href }
+                    : { as: RouterLink, to: contactItem.href })}
                   onClick={onNavClick}
                   textTransform="uppercase"
                   letterSpacing="0.14em"
-                  fontSize={{ md: "md", lg: "md" }}
+                  fontSize="md"
                   color="rgba(255,255,255,0.88)"
                   _hover={{ color: "white" }}
                   position="relative"
@@ -143,59 +149,40 @@ export function Navbar({ items, navSolid, accent }: Props) {
               )}
             </HStack>
 
-            {/* Mobile right buttons */}
-            <HStack spacing={2} display={{ base: "flex", md: "none" }}>
-              <Link
-                as="button"
-                onClick={openPhotography}
-                textTransform="uppercase"
-                letterSpacing="0.14em"
-                fontSize="md" // بزرگ‌تر
-                color="rgba(255,255,255,0.88)"
-                px={3}
-                py={2}
-                borderRadius="md"
-                _hover={{ bg: "rgba(255,255,255,0.08)", color: "white" }}
-                _active={{ bg: "rgba(255,255,255,0.10)" }}
-              >
-                Photography
-              </Link>
-
-              <IconButton
-                aria-label="Open menu"
-                icon={<FiMenu />}
-                variant="ghost"
-                color="white"
-                onClick={mobileNav.onOpen}
-                _hover={{ bg: "rgba(255,255,255,0.08)" }}
-                _active={{ bg: "rgba(255,255,255,0.10)" }}
-                size="md"
-              />
-            </HStack>
+            {/* MOBILE: فقط همبرگر */}
+            <IconButton
+              aria-label="Open menu"
+              icon={<FiMenu />}
+              variant="ghost"
+              color="white"
+              onClick={mobileNav.onOpen}
+              display={{ base: "flex", md: "none" }}
+              _hover={{ bg: "rgba(255,255,255,0.08)" }}
+              _active={{ bg: "rgba(255,255,255,0.10)" }}
+              size="md"
+            />
           </Flex>
         </Container>
       </Box>
 
-      {/* Mobile Drawer */}
-      <Drawer
-        isOpen={mobileNav.isOpen}
-        placement="right"
-        onClose={mobileNav.onClose}
-      >
+      {/* MOBILE DRAWER */}
+      <Drawer isOpen={mobileNav.isOpen} placement="right" onClose={mobileNav.onClose}>
         <DrawerOverlay bg="rgba(0,0,0,0.7)" />
         <DrawerContent bg="#000">
           <DrawerCloseButton color="white" />
+
           <DrawerBody pt={16}>
             <Stack spacing={6}>
-              {/* توی موبایل هم Photography قبل Contact */}
               {nonContactItems.map((it) => (
                 <Link
                   key={it.href}
-                  href={it.href}
+                  {...(isHashLink(it.href)
+                    ? { href: it.href }
+                    : { as: RouterLink, to: it.href })}
                   onClick={onNavClick}
                   textTransform="uppercase"
                   letterSpacing="0.12em"
-                  fontSize="lg" // بزرگ‌تر
+                  fontSize="lg"
                   color="white"
                   _hover={{ color: accent }}
                 >
@@ -203,9 +190,10 @@ export function Navbar({ items, navSolid, accent }: Props) {
                 </Link>
               ))}
 
+              {/* Photography داخل دراور */}
               <Link
                 as="button"
-                onClick={openPhotography}
+                onClick={goPhotography}
                 textTransform="uppercase"
                 letterSpacing="0.12em"
                 fontSize="lg"
@@ -219,7 +207,9 @@ export function Navbar({ items, navSolid, accent }: Props) {
               {contactItem && (
                 <Link
                   key={contactItem.href}
-                  href={contactItem.href}
+                  {...(isHashLink(contactItem.href)
+                    ? { href: contactItem.href }
+                    : { as: RouterLink, to: contactItem.href })}
                   onClick={onNavClick}
                   textTransform="uppercase"
                   letterSpacing="0.12em"

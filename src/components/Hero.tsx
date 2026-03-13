@@ -36,10 +36,20 @@ export function Hero({ onShowreelClick }: Props) {
                     Asghar Laei
                 </Heading>
 
-                <Text opacity={0.75} letterSpacing={{ base: "0.12em", md: "0.2em" }} textTransform="uppercase" fontSize={{ base: "sm", md: "md" }} mb={8}>
+                <Text opacity={0.85} letterSpacing={{ base: "0.12em", md: "0.2em" }} textTransform="uppercase" fontSize={{ base: "sm", md: "md" }} mb={4}>
                     Cinematographer | Filmmaker | Editor
                 </Text>
-
+                <Text
+                    maxW="720px"
+                    mx="auto"
+                    opacity={0.75}
+                    fontSize={{ base: "md", md: "xl" }}
+                    lineHeight="1.7"
+                    mb={4}
+                    mt={0}
+                >
+                    Visual storytelling through cinematography and video production across film and digital media
+                </Text>
                 <Button
                     onClick={onShowreelClick}
                     variant="outline"

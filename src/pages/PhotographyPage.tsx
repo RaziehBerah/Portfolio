@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
     Box,
     Container,
@@ -14,15 +14,14 @@ import {
     ModalContent,
     ModalBody,
     Image as ChakraImage,
+    AspectRatio,
 } from "@chakra-ui/react";
 import { FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { ContactFooter } from "../components/ContactFooter";
 import { HiOutlineHome } from "react-icons/hi2";
-import { AspectRatio } from "@chakra-ui/react";
+import { cloudinaryImage, cloudinaryThumb } from "../data/cloudinary";
 
-
-
-type CategoryKey = "portrait" | "nature" | "details";
+type CategoryKey = "portrait" | "nature" | "details" | "Jewellery";
 
 type Category = {
     key: CategoryKey;
@@ -44,8 +43,22 @@ const HERO =
 const ABOUT_IMG =
     "https://res.cloudinary.com/don6u8smb/image/upload/v1772050179/DSC_9489_yi1qm2.jpg";
 
-
 const CATEGORIES: Category[] = [
+    {
+        key: "Jewellery",
+        title: "Jewellery",
+        poster:
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780756/0_y9ufrd.jpg",
+        images: [
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780756/0_y9ufrd.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780759/1_f8fdu1.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780757/3_vajoyn.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780757/4_qa0pck.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780758/5_grrfx6.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780758/6_xkq2v9.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780760/7_rsdt6l.jpg",
+        ],
+    },
     {
         key: "portrait",
         title: "portrait",
@@ -57,7 +70,7 @@ const CATEGORIES: Category[] = [
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/5_yu4zfk.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877056/2_dpqvbg.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/3_eykrfe.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1771977875/P_7_zog4gv.jpg"
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1771977875/P_7_zog4gv.jpg",
         ],
     },
     {
@@ -108,10 +121,12 @@ export default function PhotographyPage() {
     };
 
     const close = () => setIsOpen(false);
+
     const next = () => {
         setIndex((i) => wrap(i + 1, category.images.length));
         setScale(1);
     };
+
     const prev = () => {
         setIndex((i) => wrap(i - 1, category.images.length));
         setScale(1);
@@ -119,11 +134,13 @@ export default function PhotographyPage() {
 
     useEffect(() => {
         if (!isOpen) return;
+
         const k = (e: KeyboardEvent) => {
             if (e.key === "ArrowRight") next();
             if (e.key === "ArrowLeft") prev();
             if (e.key === "Escape") close();
         };
+
         window.addEventListener("keydown", k);
         return () => window.removeEventListener("keydown", k);
     }, [isOpen, category.images.length]);
@@ -131,24 +148,20 @@ export default function PhotographyPage() {
     const wheelZoom = (e: React.WheelEvent) => {
         e.preventDefault();
         setScale((s) =>
-            Math.min(4, Math.max(1, Number((e.deltaY > 0 ? s * 0.92 : s * 1.08).toFixed(3))))
+            Math.min(
+                4,
+                Math.max(1, Number((e.deltaY > 0 ? s * 0.92 : s * 1.08).toFixed(3)))
+            )
         );
     };
 
     return (
         <Box bg="#050505" color="white">
-
-            {/* HERO */}
-            {/* HERO */}
             <Box position="relative" overflow="hidden">
-
-                {/* responsive frame with correct photo ratio */}
                 <AspectRatio ratio={3 / 2} maxH="85vh">
                     <Box position="relative" w="100%" h="100%">
-
-                        {/* blurred cinematic background */}
                         <Image
-                            src={HERO}
+                            src={cloudinaryImage(HERO, 1600)}
                             position="absolute"
                             inset={0}
                             w="100%"
@@ -157,24 +170,27 @@ export default function PhotographyPage() {
                             filter="blur(22px)"
                             transform="scale(1.12)"
                             opacity={0.45}
+                            alt="Photography hero background"
                         />
 
-                        {/* main photo — FULLY visible */}
                         <Image
-                            src={HERO}
+                            src={cloudinaryImage(HERO, 1600)}
                             position="relative"
                             w="100%"
                             h="100%"
                             objectFit="contain"
+                            alt="Photography hero"
                         />
-
                     </Box>
                 </AspectRatio>
 
-                {/* dark overlay */}
-                <Box position="absolute" inset={0} bg="rgba(0,0,0,.35)" pointerEvents="none" />
+                <Box
+                    position="absolute"
+                    inset={0}
+                    bg="rgba(0,0,0,.35)"
+                    pointerEvents="none"
+                />
 
-                {/* LEFT — Photography */}
                 <Text
                     position="absolute"
                     top={{ base: "16px", md: "22px" }}
@@ -192,7 +208,6 @@ export default function PhotographyPage() {
                     Photography
                 </Text>
 
-                {/* RIGHT — Home icon */}
                 <Box
                     as="a"
                     href="/"
@@ -217,15 +232,15 @@ export default function PhotographyPage() {
                 >
                     <HiOutlineHome size={35} color="white" />
                 </Box>
-
             </Box>
 
-            {/* ABOUT */}
             <Box py={{ base: 12, md: 14 }}>
                 <Container maxW="1200px">
-                    <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={10} alignItems="stretch">
-
-                        {/* IMAGE */}
+                    <Grid
+                        templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+                        gap={10}
+                        alignItems="stretch"
+                    >
                         <GridItem display="flex">
                             <Box
                                 flex="1"
@@ -235,15 +250,16 @@ export default function PhotographyPage() {
                                 border="1px solid rgba(255,255,255,0.08)"
                             >
                                 <Image
-                                    src={ABOUT_IMG}
+                                    src={cloudinaryImage(ABOUT_IMG, 1200)}
                                     w="100%"
                                     h="100%"
                                     objectFit="contain"
+                                    alt="About Asghar Laei"
+                                    loading="lazy"
                                 />
                             </Box>
                         </GridItem>
 
-                        {/* TEXT */}
                         <GridItem>
                             <Box maxW={{ base: "100%", md: "520px" }} ml={{ base: 0, md: "auto" }}>
                                 <Heading
@@ -263,7 +279,11 @@ export default function PhotographyPage() {
                                     sx={{
                                         "& p": {
                                             color: "rgba(255,255,255,0.74)",
-                                            fontSize: { base: "0.92rem", sm: "0.98rem", md: "1.02rem" },
+                                            fontSize: {
+                                                base: "0.92rem",
+                                                sm: "0.98rem",
+                                                md: "1.02rem",
+                                            },
                                             lineHeight: { base: "1.85", md: "1.9" },
                                             mb: { base: 3.5, md: 4 },
                                             textAlign: { base: "start", md: "justify" },
@@ -274,19 +294,31 @@ export default function PhotographyPage() {
                                     }}
                                 >
                                     <Text as="p">
-                                        As a cinematographer who has spent years experiencing the magic of capturing images, I remain fascinated by the power of light. how, in its presence or absence, it reveals and shapes the details of a subject with an almost magical touch.
+                                        As a cinematographer who has spent years experiencing the magic
+                                        of capturing images, I remain fascinated by the power of light.
+                                        how, in its presence or absence, it reveals and shapes the
+                                        details of a subject with an almost magical touch.
                                     </Text>
 
                                     <Text as="p">
-                                        Since my early days in film school, when I first connected with photography, the value of preserving a moment became clear to me. A photograph, for me, is a single instant offered to the viewer, one that quietly invites them to imagine the moments before and after it.
+                                        Since my early days in film school, when I first connected with
+                                        photography, the value of preserving a moment became clear to
+                                        me. A photograph, for me, is a single instant offered to the
+                                        viewer, one that quietly invites them to imagine the moments
+                                        before and after it.
                                     </Text>
 
                                     <Text as="p">
-                                        Over the years, alongside cinematography, photography has remained an essential part of my path. I see them as one continuous journey, each enriching the other and constantly shaping the way I look at the world around me.
+                                        Over the years, alongside cinematography, photography has
+                                        remained an essential part of my path. I see them as one
+                                        continuous journey, each enriching the other and constantly
+                                        shaping the way I look at the world around me.
                                     </Text>
 
                                     <Text as="p" sx={{ mb: { base: 5, md: 6 } }}>
-                                        For me, photography is a journey into the world of light, into still frames that hold a subtle, living tension within them: a dialogue between light and shadow.
+                                        For me, photography is a journey into the world of light, into
+                                        still frames that hold a subtle, living tension within them: a
+                                        dialogue between light and shadow.
                                     </Text>
                                 </Box>
 
@@ -302,12 +334,10 @@ export default function PhotographyPage() {
                                 </Text>
                             </Box>
                         </GridItem>
-
                     </Grid>
                 </Container>
             </Box>
 
-            {/* CATEGORIES */}
             <Box pb={16}>
                 <Container maxW="1200px">
                     <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6}>
@@ -322,12 +352,14 @@ export default function PhotographyPage() {
                                 onClick={() => openCat(c.key)}
                             >
                                 <ChakraImage
-                                    src={c.poster}
+                                    src={cloudinaryThumb(c.poster, 900)}
                                     h="620px"
                                     w="100%"
                                     objectFit="cover"
                                     transition="transform .35s ease"
                                     _groupHover={{ transform: "scale(1.05)" }}
+                                    alt={c.title}
+                                    loading="lazy"
                                 />
 
                                 <Box
@@ -356,7 +388,6 @@ export default function PhotographyPage() {
 
             <ContactFooter />
 
-            {/* LIGHTBOX */}
             <Modal isOpen={isOpen} onClose={close} size="full">
                 <ModalOverlay bg="rgba(0,0,0,.9)" />
                 <ModalContent bg="transparent">
@@ -369,28 +400,46 @@ export default function PhotographyPage() {
                             onWheel={wheelZoom}
                         >
                             <ChakraImage
-                                src={current}
+                                src={cloudinaryImage(current, 1600)}
                                 maxW="1200px"
                                 maxH="100vh"
                                 w="100%"
                                 h="100%"
                                 objectFit="contain"
                                 transform={`scale(${scale})`}
+                                alt="Gallery image"
                             />
 
-                            <IconButton aria-label="close" icon={<FiX />} onClick={close}
-                                position="fixed" top={6} right={6} />
+                            <IconButton
+                                aria-label="close"
+                                icon={<FiX />}
+                                onClick={close}
+                                position="fixed"
+                                top={6}
+                                right={6}
+                            />
 
-                            <IconButton aria-label="prev" icon={<FiChevronLeft />} onClick={prev}
-                                position="fixed" left={6} top="50%" />
+                            <IconButton
+                                aria-label="prev"
+                                icon={<FiChevronLeft />}
+                                onClick={prev}
+                                position="fixed"
+                                left={6}
+                                top="50%"
+                            />
 
-                            <IconButton aria-label="next" icon={<FiChevronRight />} onClick={next}
-                                position="fixed" right={6} top="50%" />
+                            <IconButton
+                                aria-label="next"
+                                icon={<FiChevronRight />}
+                                onClick={next}
+                                position="fixed"
+                                right={6}
+                                top="50%"
+                            />
                         </Box>
                     </ModalBody>
                 </ModalContent>
             </Modal>
-
         </Box>
     );
 }

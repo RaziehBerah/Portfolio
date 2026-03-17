@@ -20,8 +20,6 @@ export function AwardsSection({ credits, accent }: Props) {
 
     return (
         <Box as="section" id="awards" py={{ base: 16, md: 24 }}>
-
-            {/* ✅ کانتینر عریض‌تر برای حذف فضای خالی چپ و راست */}
             <Container
                 maxW={{ base: "1200px", lg: "1400px", xl: "1600px" }}
                 px={{ base: 4, md: 6 }}
@@ -39,27 +37,22 @@ export function AwardsSection({ credits, accent }: Props) {
                     Awards & Selections
                 </Heading>
 
-                {/* ✅ دو ستونه */}
                 <Stack
                     direction={{ base: "column", md: "row" }}
                     spacing={{ base: 10, md: 10 }}
                     align="stretch"
                 >
-                    {/* ===== LEFT: SLIDESHOW ===== */}
                     <Box flex={{ base: "1", md: "1" }} w="100%">
                         <MediaSlideshow
-                            count={11}
-                            startIndex={2}
                             intervalMs={4500}
-                            h={{ base: "420px", md: "600px" }}   // ارتفاع مرجع
-                            maxW="100%"                          // مهم: تا ته ستون
+                            h={{ base: "420px", md: "600px" }}
+                            maxW="100%"
                         />
                     </Box>
 
-                    {/* ===== RIGHT: AWARDS LIST (SCROLL ON DESKTOP) ===== */}
                     <Box flex={{ base: "1", md: "1" }} w="100%">
                         <Box
-                            h={{ base: "auto", md: "600px" }}     // برابر با اسلایدشو در دسکتاپ
+                            h={{ base: "auto", md: "600px" }}
                             overflowY={{ base: "visible", md: "auto" }}
                             pr={{ base: 0, md: 2 }}
                             sx={{
@@ -73,7 +66,8 @@ export function AwardsSection({ credits, accent }: Props) {
                                     borderRadius: "999px",
                                 },
                                 scrollbarWidth: "thin",
-                                scrollbarColor: "rgba(255,255,255,0.18) rgba(255,255,255,0.06)",
+                                scrollbarColor:
+                                    "rgba(255,255,255,0.18) rgba(255,255,255,0.06)",
                             }}
                         >
                             <Stack spacing={6}>
@@ -85,7 +79,12 @@ export function AwardsSection({ credits, accent }: Props) {
                                         borderRadius="16px"
                                         p={{ base: 5, md: 7 }}
                                     >
-                                        <Flex align="baseline" justify="space-between" mb={4} gap={4}>
+                                        <Flex
+                                            align="baseline"
+                                            justify="space-between"
+                                            mb={4}
+                                            gap={4}
+                                        >
                                             <Heading
                                                 fontFamily="heading"
                                                 fontWeight="400"
@@ -117,10 +116,17 @@ export function AwardsSection({ credits, accent }: Props) {
                                                     direction={{ base: "column", md: "row" }}
                                                     gap={{ base: 1, md: 4 }}
                                                     align={{ base: "flex-start", md: "baseline" }}
-                                                    borderTop={idx === 0 ? "none" : "1px solid rgba(255,255,255,0.06)"}
+                                                    borderTop={
+                                                        idx === 0
+                                                            ? "none"
+                                                            : "1px solid rgba(255,255,255,0.06)"
+                                                    }
                                                     pt={idx === 0 ? 0 : 3}
                                                 >
-                                                    <Box minW={{ base: "auto", md: "170px" }} fontSize="sm">
+                                                    <Box
+                                                        minW={{ base: "auto", md: "170px" }}
+                                                        fontSize="sm"
+                                                    >
                                                         <Box
                                                             as="span"
                                                             color="black"

@@ -19,7 +19,7 @@ export function Hero({ onShowreelClick }: Props) {
             textAlign="center"
         >
             <Box position="absolute" inset={0} zIndex={0}>
-                <Image src="media/images/1.jpg" alt="Cinematic Background" w="100%" h="100%" objectFit="cover" />
+                <Image src="https://res.cloudinary.com/don6u8smb/image/upload/v1773786035/Hero_r7cq1s.jpg" alt="Cinematic Background" w="100%" h="100%" objectFit="cover" />
                 <Box position="absolute" inset={0} bgGradient="linear(to-b, rgba(0,0,0,0.25), rgba(5,5,5,1))" />
             </Box>
 

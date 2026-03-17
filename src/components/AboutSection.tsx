@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Grid, GridItem, Heading, Image, Text } from "@chakra-ui/react";
-import portrait from "/media/images/portrait.jpg";
+
 
 export function AboutSection() {
     return (
@@ -25,7 +25,7 @@ export function AboutSection() {
                             bg="black"
                         >
                             <Image
-                                src={portrait}
+                                src="https://res.cloudinary.com/don6u8smb/image/upload/v1773785826/portrait_o1csf1.jpg"
                                 alt="Asghar Laei Portrait"
                                 w="100%"
                                 h="100%"

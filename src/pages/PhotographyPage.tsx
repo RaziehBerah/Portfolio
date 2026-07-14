@@ -120,6 +120,7 @@ const CATEGORIES: Category[] = [
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784045884/4_zm1hkz.png",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/5_lry1j8.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/6_kcbr9k.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784061879/DOCS-QFT-SUN-210626JC028-1440x960_ljljgf.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784046248/7_h75o5d.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/8_lqepjd.png",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1784045887/9_icsyze.jpg",

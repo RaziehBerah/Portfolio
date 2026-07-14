@@ -21,7 +21,7 @@ import { ContactFooter } from "../components/ContactFooter";
 import { HiOutlineHome } from "react-icons/hi2";
 import { cloudinaryImage, cloudinaryThumb } from "../data/cloudinary";
 
-type CategoryKey = "portrait" | "nature" | "details" | "Jewellery";
+type CategoryKey = "portrait" | "nature" | "details" | "Jewellery" | "fests";
 
 type Category = {
     key: CategoryKey;
@@ -48,28 +48,33 @@ const CATEGORIES: Category[] = [
         key: "Jewellery",
         title: "Jewellery",
         poster:
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780756/0_y9ufrd.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784036023/file_0000000096a871f4ae91564fc2093609_ykyzmg.png",
         images: [
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780756/0_y9ufrd.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780759/1_f8fdu1.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780757/3_vajoyn.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784038941/file_000000005fdc71f48c87cbd133e2f25a_imlhsx.png",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1773780757/4_qa0pck.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780758/5_grrfx6.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780758/6_xkq2v9.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780760/7_rsdt6l.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784040632/file_000000003f2c71f4a31b786a9fa4d5cd_srzegb.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784038940/file_0000000001ec71f4a91cd9238ac2d449_keyco2.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1773780759/1_f8fdu1.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784038941/file_00000000082071f4a90d7e3ffb3125e7_bdgu1o.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784042556/file_000000007fa471f49ee48c24cdb25fef_hnyhex.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784041764/file_00000000b32c71f4af05cb5f453118f0_kgvxth.png",
         ],
     },
     {
         key: "portrait",
         title: "portrait",
         poster:
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/6_u3l1d6.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784037164/file_000000007bf471f4915c3e4a6e2cee91_xhtlr3.png",
         images: [
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/6_u3l1d6.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784042867/file_0000000070a871f4a22b6c63845e4869_loc4lk.png",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877057/7_ka56cy.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784042556/1000005138-03_mwmhao.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784042828/DSC_0883_1_bi3oub.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/5_yu4zfk.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877056/2_dpqvbg.jpg",
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/3_eykrfe.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784042828/DSC_0754_t1tht6.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784041875/IMG_20260517_173020_977_awln9p.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771977875/P_7_zog4gv.jpg",
         ],
     },
@@ -77,25 +82,48 @@ const CATEGORIES: Category[] = [
         key: "nature",
         title: "nature",
         poster:
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/02_qgsysu.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784037273/file_00000000874c71f4a82f4190e27c314d_elekug.png",
         images: [
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877055/02_qgsysu.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784043055/DSC_0247_1_t9hjcc.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877059/12_nfsglo.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784043055/DSC_0581_hsb5tg.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877062/07_wxls4e.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784043057/file_00000000f68c71fd96717a7c82150262_yvr5rj.png",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877060/11_kxzy9c.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784043223/DSC_6697_xououh.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877058/10_amuqcg.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784043223/DSC_6689_dgrzgh.jpg",
         ],
     },
     {
         key: "details",
         title: "details",
         poster:
-            "https://res.cloudinary.com/don6u8smb/image/upload/v1771877057/1_cztlxs.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784037410/file_00000000f1a471f4a57becb7e9e2989e_w9tx9q.png",
         images: [
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877057/1_cztlxs.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877058/9_sfvw8q.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877057/8_flreor.jpg",
             "https://res.cloudinary.com/don6u8smb/image/upload/v1771877060/13_xotlu7.jpg",
+        ],
+    },
+    {
+        key: "fests",
+        title: "fests",
+        poster:
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045998/file_00000000a4d871f48e7374a406182c67_1_dfa9v3.png",
+        images: [
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045884/1_sw7wg5.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045884/2_ad7si3.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045884/3_lrwbyg.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045884/4_zm1hkz.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/5_lry1j8.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/6_kcbr9k.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784046248/7_h75o5d.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045885/8_lqepjd.png",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045887/9_icsyze.jpg",
+            "https://res.cloudinary.com/don6u8smb/image/upload/v1784045888/10_bbc0g9.png",
         ],
     },
 ];
@@ -350,14 +378,35 @@ export default function PhotographyPage() {
                                 cursor="pointer"
                                 role="group"
                                 onClick={() => openCat(c.key)}
+                                h="620px"
+                                bg="black"
                             >
+                                {/* عکس اول گالری در لایه زیرین */}
+                                <ChakraImage
+                                    src={cloudinaryThumb(c.images[0], 900)}
+                                    position="absolute"
+                                    inset={0}
+                                    w="100%"
+                                    h="100%"
+                                    objectFit="cover"
+                                    alt=""
+                                    loading="lazy"
+                                />
+
+                                {/* عکس پوستر روی عکس اول */}
                                 <ChakraImage
                                     src={cloudinaryThumb(c.poster, 900)}
-                                    h="620px"
+                                    position="absolute"
+                                    inset={0}
                                     w="100%"
+                                    h="100%"
                                     objectFit="cover"
-                                    transition="transform .35s ease"
-                                    _groupHover={{ transform: "scale(1.05)" }}
+                                    opacity={0.5}
+                                    transition="transform .35s ease, opacity .35s ease"
+                                    _groupHover={{
+                                        transform: "scale(1.05)",
+                                        opacity: 0.6,
+                                    }}
                                     alt={c.title}
                                     loading="lazy"
                                 />
@@ -365,21 +414,9 @@ export default function PhotographyPage() {
                                 <Box
                                     position="absolute"
                                     inset={0}
-                                    display="grid"
-                                    placeItems="center"
-                                    bg="rgba(0,0,0,.25)"
-                                >
-                                    <Box
-                                        px={10}
-                                        py={3}
-                                        border="1px solid rgba(255,255,255,.6)"
-                                        letterSpacing="0.25em"
-                                        textTransform="uppercase"
-                                        bg="rgba(0,0,0,.25)"
-                                    >
-                                        See more →
-                                    </Box>
-                                </Box>
+                                    bg="rgba(0,0,0,.10)"
+                                    pointerEvents="none"
+                                />
                             </Box>
                         ))}
                     </SimpleGrid>
